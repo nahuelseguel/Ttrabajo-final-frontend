@@ -1,0 +1,10 @@
+.alert {
+  padding: .75rem 1rem;
+  border-radius: var(--radius);
+  font-size: .88rem;
+  font-weight: 500;
+}
+
+.error   { background: var(--danger-light);  color: var(--danger); }
+.success { background: var(--success-light); color: var(--success); }
+.warning { background: var(--warning-light); color: var(--warning); }

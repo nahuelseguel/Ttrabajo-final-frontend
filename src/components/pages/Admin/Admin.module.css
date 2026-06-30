@@ -1,0 +1,100 @@
+.page  { padding: 2rem 0 4rem; }
+.inner { display: flex; flex-direction: column; gap: 1.5rem; }
+.title { font-size: 1.5rem; font-weight: 700; color: var(--gray-900); }
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 1rem;
+}
+
+.stat {
+  background: #fff;
+  border: 1px solid var(--gray-200);
+  border-radius: 10px;
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: .3rem;
+  box-shadow: var(--shadow);
+}
+
+.statNum   { font-size: 2rem; font-weight: 800; color: var(--primary); }
+.statLabel { font-size: .82rem; color: var(--gray-500); font-weight: 500; }
+
+.tabs { display: flex; gap: .5rem; border-bottom: 2px solid var(--gray-200); }
+
+.tab {
+  padding: .65rem 1.25rem;
+  background: none;
+  border: none;
+  font-size: .9rem;
+  font-weight: 600;
+  color: var(--gray-500);
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -2px;
+  transition: color .15s, border-color .15s;
+}
+.tab.active { color: var(--primary); border-bottom-color: var(--primary); }
+
+.tableWrapper {
+  overflow-x: auto;
+  background: #fff;
+  border: 1px solid var(--gray-200);
+  border-radius: 10px;
+  box-shadow: var(--shadow);
+}
+
+.table { width: 100%; border-collapse: collapse; }
+.table th {
+  text-align: left;
+  padding: .85rem 1rem;
+  font-size: .78rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+  color: var(--gray-500);
+  background: var(--gray-50);
+  border-bottom: 1px solid var(--gray-200);
+}
+.table td {
+  padding: .85rem 1rem;
+  font-size: .9rem;
+  color: var(--gray-700);
+  border-bottom: 1px solid var(--gray-100);
+}
+.table tr:last-child td { border-bottom: none; }
+.table tr:hover td { background: var(--gray-50); }
+
+.roleBadge {
+  font-size: .75rem;
+  font-weight: 600;
+  background: var(--primary-light);
+  color: var(--primary);
+  padding: .2rem .65rem;
+  border-radius: 99px;
+  text-transform: capitalize;
+}
+
+.select {
+  padding: .35rem .6rem;
+  border: 1.5px solid var(--gray-200);
+  border-radius: 6px;
+  font-size: .85rem;
+  background: #fff;
+  cursor: pointer;
+}
+
+.deleteBtn {
+  font-size: .8rem;
+  font-weight: 500;
+  padding: .3rem .7rem;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  background: var(--danger-light);
+  color: var(--danger);
+  transition: all .15s;
+}
+.deleteBtn:hover { background: var(--danger); color: #fff; }

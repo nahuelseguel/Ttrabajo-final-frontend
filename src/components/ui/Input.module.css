@@ -1,0 +1,19 @@
+.wrapper { display: flex; flex-direction: column; gap: .35rem; width: 100%; }
+
+.label { font-size: .82rem; font-weight: 500; color: var(--gray-600); }
+
+.input {
+  width: 100%;
+  padding: .6rem .85rem;
+  border: 1.5px solid var(--gray-200);
+  border-radius: var(--radius);
+  font-size: .9rem;
+  background: #fff;
+  color: var(--gray-800);
+  transition: border-color .15s;
+}
+
+.input:focus   { border-color: var(--primary); }
+.input.hasError{ border-color: var(--danger); }
+
+.error { font-size: .78rem; color: var(--danger); }

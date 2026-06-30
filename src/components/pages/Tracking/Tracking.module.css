@@ -1,0 +1,86 @@
+.page  { padding: 2rem 0 4rem; }
+.inner { max-width: 700px; }
+
+.title    { font-size: 1.75rem; font-weight: 700; color: var(--gray-900); }
+.subtitle { font-size: .95rem; color: var(--gray-500); margin-top: .4rem; }
+
+.searchBar {
+  display: flex;
+  gap: .75rem;
+  margin-top: 1.75rem;
+  margin-bottom: 1rem;
+}
+
+.input {
+  flex: 1;
+  padding: .65rem 1rem;
+  border: 1.5px solid var(--gray-200);
+  border-radius: var(--radius);
+  font-size: .95rem;
+  transition: border-color .15s;
+}
+.input:focus { border-color: var(--primary); outline: none; }
+
+/* ── Resultado ── */
+.result {
+  margin-top: 1.5rem;
+  background: #fff;
+  border: 1px solid var(--gray-200);
+  border-radius: 12px;
+  padding: 1.75rem;
+  box-shadow: var(--shadow-md);
+}
+
+.resultHeader {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-bottom: 1.25rem;
+  border-bottom: 1px solid var(--gray-100);
+  margin-bottom: 1.5rem;
+}
+
+.resultCode { font-size: 1.1rem; font-weight: 700; color: var(--gray-900); font-family: monospace; }
+.resultDest { font-size: .88rem; color: var(--gray-500); margin-top: .25rem; }
+
+.timelineTitle { font-size: 1rem; font-weight: 600; color: var(--gray-700); margin-bottom: 1rem; }
+
+.noEvents { color: var(--gray-400); font-size: .9rem; }
+
+/* ── Timeline ── */
+.timeline { list-style: none; display: flex; flex-direction: column; gap: 0; }
+
+.event {
+  display: flex;
+  gap: 1rem;
+  padding-bottom: 1.25rem;
+  position: relative;
+}
+.event::before {
+  content: '';
+  position: absolute;
+  left: 7px;
+  top: 20px;
+  bottom: 0;
+  width: 2px;
+  background: var(--gray-200);
+}
+.event:last-child::before { display: none; }
+
+.dot {
+  flex-shrink: 0;
+  width: 16px; height: 16px;
+  border-radius: 50%;
+  background: var(--gray-300);
+  border: 2px solid #fff;
+  box-shadow: 0 0 0 2px var(--gray-200);
+  margin-top: .15rem;
+  z-index: 1;
+}
+.latest .dot { background: var(--primary); box-shadow: 0 0 0 2px var(--primary-light); }
+
+.eventBody { display: flex; flex-direction: column; gap: .35rem; }
+.eventDesc { font-size: .9rem;  color: var(--gray-700); }
+.eventLoc  { font-size: .82rem; color: var(--gray-400); }
+.eventDate { font-size: .78rem; color: var(--gray-400); }

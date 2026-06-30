@@ -1,0 +1,14 @@
+.badge {
+  display: inline-block;
+  padding: .2rem .7rem;
+  border-radius: 99px;
+  font-size: .75rem;
+  font-weight: 600;
+  letter-spacing: .02em;
+}
+
+.pending    { background: var(--warning-light); color: var(--warning); }
+.confirmed  { background: var(--primary-light); color: var(--primary); }
+.in_transit { background: #f0f9ff; color: #0369a1; }
+.delivered  { background: var(--success-light); color: var(--success); }
+.cancelled  { background: var(--gray-100);      color: var(--gray-500); }

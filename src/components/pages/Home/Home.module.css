@@ -1,0 +1,67 @@
+.page { padding-bottom: 4rem; }
+
+.hero {
+  text-align: center;
+  padding: 5rem 1.5rem 3.5rem;
+  background: linear-gradient(160deg, #eff6ff 0%, #f9fafb 100%);
+  border-bottom: 1px solid var(--gray-200);
+}
+
+.title {
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 800;
+  color: var(--gray-900);
+  line-height: 1.15;
+}
+
+.accent { color: var(--primary); }
+
+.subtitle {
+  max-width: 520px;
+  margin: 1.25rem auto 0;
+  font-size: 1.05rem;
+  color: var(--gray-500);
+  line-height: 1.65;
+}
+
+.actions {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 2rem;
+  flex-wrap: wrap;
+}
+
+.btnPrimary, .btnSecondary {
+  padding: .75rem 1.75rem;
+  border-radius: var(--radius);
+  font-size: .95rem;
+  font-weight: 600;
+  transition: all .15s;
+}
+
+.btnPrimary   { background: var(--primary); color: #fff; }
+.btnPrimary:hover   { background: var(--primary-dark); }
+.btnSecondary { background: #fff; color: var(--gray-700); border: 1.5px solid var(--gray-200); }
+.btnSecondary:hover { border-color: var(--primary); color: var(--primary); }
+
+.features {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.5rem;
+  max-width: 1000px;
+  margin: 3rem auto 0;
+  padding: 0 1.5rem;
+}
+
+.card {
+  background: #fff;
+  border: 1px solid var(--gray-200);
+  border-radius: 12px;
+  padding: 2rem 1.75rem;
+  box-shadow: var(--shadow);
+}
+
+.icon      { font-size: 2rem; }
+.cardTitle { font-size: 1rem; font-weight: 700; color: var(--gray-800); margin-top: .75rem; }
+.cardDesc  { font-size: .88rem; color: var(--gray-500); margin-top: .4rem; line-height: 1.6; }
