@@ -5,16 +5,27 @@ import Badge        from '@/components/ui/Badge'
 import Button       from '@/components/ui/Button'
 import Alert        from '@/components/ui/Alert'
 import Spinner      from '@/components/ui/Spinner'
+import CitySelect   from '@/components/ui/CitySelect'
 import styles       from './Admin.module.css'
 
 export default function Admin() {
   const { data: users,  loading: loadU, error: errU, refetch: refetchUsers }   = useFetch('/users')
   const { data: orders, loading: loadO, error: errO, refetch: refetchOrders }  = useFetch('/orders')
-  const [tab,       setTab]       = useState('users')
-  const [actionErr, setActionErr] = useState('')
+  const [tab,           setTab]           = useState('users')
+  const [actionErr,     setActionErr]     = useState('')
+  const [draftStatuses, setDraftStatuses] = useState({})
+  const [locations,     setLocations]     = useState({})
 
   const loading = loadU || loadO
   if (loading) return <Spinner fullPage />
+
+  function setDraftStatus(orderId, status) {
+    setDraftStatuses(prev => ({ ...prev, [orderId]: status }))
+  }
+
+  function setLocation(orderId, city) {
+    setLocations(prev => ({ ...prev, [orderId]: city }))
+  }
 
   async function handleDeleteUser(id) {
     if (!confirm('¿Eliminar este usuario?')) return
@@ -28,8 +39,21 @@ export default function Admin() {
     catch (err) { setActionErr(err.message) }
   }
 
-  async function handleStatusChange(orderId, status) {
-    try { await api.patch(`/orders/${orderId}`, { status }); refetchOrders() }
+  async function handleAccept(orderId) {
+    const order = orders?.find(o => o.id === orderId)
+    if (!order) return
+    const status = draftStatuses[orderId] || order.status
+    const location = locations[orderId] || undefined
+    if (!draftStatuses[orderId] && !location) {
+      setActionErr('Cambiá el estado o seleccioná una ciudad antes de aceptar')
+      return
+    }
+    try {
+      await api.patch(`/orders/${orderId}`, { status, location })
+      setDraftStatuses(prev => { const copy = { ...prev }; delete copy[orderId]; return copy })
+      setLocations(prev => { const copy = { ...prev }; delete copy[orderId]; return copy })
+      refetchOrders()
+    }
     catch (err) { setActionErr(err.message) }
   }
 
@@ -103,31 +127,41 @@ export default function Admin() {
                 </tr>
               </thead>
               <tbody>
-                {(orders || []).map(o => (
-                  <tr key={o.id}>
-                    <td><code>{o.trackingCode}</code></td>
-                    <td>{o.destinationName}</td>
-                    <td><Badge status={o.status} /></td>
-                    <td>
-                      <select
-                        className={styles.select}
-                        value={o.status}
-                        onChange={e => handleStatusChange(o.id, e.target.value)}
-                      >
-                        <option value="pending">Pendiente</option>
-                        <option value="confirmed">Confirmado</option>
-                        <option value="in_transit">En tránsito</option>
-                        <option value="delivered">Entregado</option>
-                        <option value="cancelled">Cancelado</option>
-                      </select>
-                    </td>
-                    <td>
-                      <button className={styles.deleteBtn} onClick={() => handleDeleteOrder(o.id)}>
-                        Eliminar
-                      </button>
-                    </td>
-                  </tr>
-                ))}
+                  {(orders || []).map(o => (
+                    <tr key={o.id}>
+                      <td><code>{o.trackingCode}</code></td>
+                      <td>{o.destinationName}</td>
+                      <td><Badge status={o.status} /></td>
+                      <td>
+                        <div className={styles.statusCell}>
+                          <select
+                            className={styles.select}
+                            value={draftStatuses[o.id] || o.status}
+                            onChange={e => setDraftStatus(o.id, e.target.value)}
+                          >
+                            <option value="pending">Pendiente</option>
+                            <option value="confirmed">Confirmado</option>
+                            <option value="in_transit">En tránsito</option>
+                            <option value="delivered">Entregado</option>
+                            <option value="cancelled">Cancelado</option>
+                          </select>
+                          <CitySelect
+                            value={locations[o.id] || ''}
+                            onChange={city => setLocation(o.id, city)}
+                            placeholder="Ciudad..."
+                          />
+                          <button className={styles.acceptBtn} onClick={() => handleAccept(o.id)}>
+                            Aceptar
+                          </button>
+                        </div>
+                      </td>
+                      <td>
+                        <button className={styles.deleteBtn} onClick={() => handleDeleteOrder(o.id)}>
+                          Eliminar
+                        </button>
+                      </td>
+                    </tr>
+                  ))}
               </tbody>
             </table>
           </div>

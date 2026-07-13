@@ -86,6 +86,26 @@
   cursor: pointer;
 }
 
+.statusCell {
+  display: flex;
+  flex-direction: column;
+  gap: .4rem;
+  min-width: 160px;
+}
+
+.acceptBtn {
+  font-size: .8rem;
+  font-weight: 600;
+  padding: .35rem .8rem;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  background: var(--primary);
+  color: #fff;
+  transition: all .15s;
+}
+.acceptBtn:hover { opacity: .85; }
+
 .deleteBtn {
   font-size: .8rem;
   font-weight: 500;

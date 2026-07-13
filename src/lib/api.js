@@ -4,7 +4,7 @@
  * Todas las peticiones pasan por aquí — los componentes nunca usan fetch directamente.
  */
 
-const BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000/api/v1'
+const BASE_URL = import.meta.env.VITE_API_URL || '/api/v1'
 
 // ─── Token helpers ────────────────────────────────────────────────────────────
 
